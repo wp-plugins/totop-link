@@ -10,8 +10,6 @@ Contact Form 7 - Adds honeypot functionality to Contact Form 7 forms.
 
 == Description ==
 
-### Add Honeypot to Contact Form 7
-
 This simple addition to the wonderful Contact Form 7 plugin adds basic honeypot functionality to thwart spambots without the need for an ugly captcha.
 
 The principle of a honeypot is simple -- <em>bots are stupid</em>. While some spam is hand-delivered, the vast majority is submitted by bots scripted in a specific (wide-scope) way to submit spam to the largest number of form types. In this way they somewhat blindly fill in fields, irregardless of whether the field should be filled in or not. This is how a honeypot catches the bot -- it introduces an additional field in the form that if filled out will cause the form not to validate.
