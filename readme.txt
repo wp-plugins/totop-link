@@ -18,11 +18,11 @@ Visit <a href="http://www.daobydesign.com/free-plugins/honeypot-module-for-conta
 
 == Installation ==
 
-1. Upload plugin files to your plugins folder, or install using WordPress' built-in Add New Plugin installer
+1. Upload plugin files to your plugins folder <strong>or</strong> install using Wordpress' "Add Plugin" feature -- just search for "Contact Form 7 Honeypot"
 1. Activate the plugin
 1. Edit a form in Contact Form 7
-1. Choose "Honeypot" from the Generate Tag dropdown
-1. Follow the instructions on the page
+1. Choose "Honeypot" from the Generate Tag dropdown. <em>Recommended: change the honeypot element's ID.</em>
+1. Insert the generated tag anywhere in your form. The added field uses inline CSS styles to hide the field from your visitors.
 
 == Frequently Asked Questions == 
 
