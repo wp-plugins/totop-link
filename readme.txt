@@ -1,7 +1,7 @@
 === Contact Form 7 Honeypot ===
 Tags: honeypot, antispam, captcha, spam, form, forms, contact form 7, contactform7, contact form, cf7, cforms, Contact Forms 7, Contact Forms, contacts
 Requires at least: 2.8
-Tested up to: 3.1.3
+Tested up to: 3.2
 Stable tag: trunk
 Contributors: DaoByDesign
 Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40daobydesign%2ecom&item_name=Contact%20Form%207%20Honeypot&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
