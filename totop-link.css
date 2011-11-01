@@ -1,0 +1,14 @@
+#toTop {display:block;width:40px;height:48px;position:fixed; bottom:40px; right:10px; cursor:pointer;display:none;background:url(images/totop-dark.png) no-repeat 0 0;-moz-opacity:.50; filter:alpha(opacity=50); opacity:.50;}
+#toTop:hover {-moz-opacity:1; filter:alpha(opacity=100); opacity:1;}
+#toTop span {display:none;}
+
+#toTop.totop-light {background-image:url(images/totop-light.png);}
+#toTop.totop-dark {background-image:url(images/totop-dark.png);}
+
+#toTop.totop-text {display:inline;width:auto;height:auto;background:none;-moz-opacity:1; filter:alpha(opacity=100); opacity:1;}
+#toTop.totop-text span {display:inline;}
+
+#toTop.totop-br {bottom:40px;right:10px;}
+#toTop.totop-bl {bottom:40px;left:10px;}
+#toTop.totop-tr {top:40px;right:10px;}
+#toTop.totop-tl {top:40px;left:10px;}
