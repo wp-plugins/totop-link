@@ -89,10 +89,19 @@ function totop_menu() {
                         		<br />
                                 <input type="radio" name="totop_position" value="br" id="totop_br" <?php if($totop_position=='br'){ echo "CHECKED"; } ?>><label for="totop_br"> Bottom Right</label>
                         		<br />
+                                <input type="radio" name="totop_position" value="bm" id="totop_bm" <?php if($totop_position=='bm'){ echo "CHECKED"; } ?>><label for="totop_bm"> Bottom Middle</label>
+                                <br />
                                 <input type="radio" name="totop_position" value="tl" id="totop_tl" <?php if($totop_position=='tl'){ echo "CHECKED"; } ?>><label for="totop_tl"> Top Left</label>
                         		<br />
                                 <input type="radio" name="totop_position" value="tr" id="totop_tr" <?php if($totop_position=='tr'){ echo "CHECKED"; } ?>><label for="totop_tr"> Top Right</label>
-								<p class="description">With this setting you can choose where you want the ToTop link to be displayed.</p>
+                                <br />
+                                <input type="radio" name="totop_position" value="tm" id="totop_tm" <?php if($totop_position=='tm'){ echo "CHECKED"; } ?>><label for="totop_tm"> Top Middle</label>
+                                <br />
+                                <input type="radio" name="totop_position" value="ml" id="totop_ml" <?php if($totop_position=='ml'){ echo "CHECKED"; } ?>><label for="totop_ml"> Middle Left</label>
+                                <br />
+                                <input type="radio" name="totop_position" value="mr" id="totop_mr" <?php if($totop_position=='mr'){ echo "CHECKED"; } ?>><label for="totop_mr"> Middle Right</label>
+
+                                <p class="description">With this setting you can choose where you want the ToTop link to be displayed.</p>
                             </td>
                         </tr>    
                         
