@@ -25,12 +25,13 @@ Check out the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link
 = I've enabled the plugin, why isn't it displaying? =
 It could be that your theme doesn't call wp_footer() (as it should). This is a pretty essential part of a WordPress theme, so we recommend you contact the theme's designer and ask them to add it. Optionally, if you're comfortable editing your theme file, you can [add it yourself](http://codex.wordpress.org/Function_Reference/wp_footer).
 
+= What is the plugin license? =
+This plugin is released under a GPL license.
+
 == Screenshots ==
 Easier just to view the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a live demo.
 
 == Changelog ==
-= What is the plugin license? =
-This plugin is released under a GPL license.
 
 = 1.1 =
 * A quick update to fix a couple bugs and add a few extra positions. Thanks to those who commented.
