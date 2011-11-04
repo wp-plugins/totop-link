@@ -1,11 +1,12 @@
 <?php
 /*
 Plugin Name: ToTop Link
-Version: 1.0
+Version: 1.1
 Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
 Description: A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog. The link uses WordPress' included jQuery to provide a slick UX, with the link subtly appearing after the page has been scrolled, and disappearing once the user returns to the top of the page. Additionally, a smooth scrolling animation is added when the link is clicked on.
+License: GPL2
 */ 
 
 register_activation_hook(__FILE__, 'totop_activation_hook');
