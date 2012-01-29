@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ToTop Link
-Version: 1.1
+Version: 1.2
 Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
@@ -46,9 +46,10 @@ function totop_menu() {
 	
 		// update button position
 		update_option('totop_position', mysql_escape_string($_REQUEST['totop_position']));
-		
+		update_option('totop_position_c', $_REQUEST['totop_position_c']);
 		// update link styles
 		update_option('totop_style', mysql_escape_string($_REQUEST['totop_style']));
+		update_option('totop_style_c', mysql_escape_string($_REQUEST['totop_style_c']));
 
 		// update text link styles
 		update_option('totop_link_text', mysql_escape_string($_REQUEST['totop_link_text']));
@@ -61,7 +62,9 @@ function totop_menu() {
 	// Load the options for display in the form.
 	$totop_enabled = get_option('totop_enabled');
 	$totop_position = get_option('totop_position');
+	$totop_position_c = get_option('totop_position_c');
 	$totop_style = get_option('totop_style');
+	$totop_style_c = get_option('totop_style_c');
 	$totop_link_text = get_option('totop_link_text');
 	$totop_link_style1 = get_option('totop_link_style1');
 	$totop_link_style2 = get_option('totop_link_style2');
@@ -86,23 +89,26 @@ function totop_menu() {
                     	<tr valign="top">
                         	<th>ToTop Link Position</th>
                     		<td>
-                    			<input type="radio" name="totop_position" value="bl" id="totop_bl" <?php if($totop_position=='bl'){ echo "CHECKED"; } ?>><label for="totop_bl"> Bottom Left</label>
-                        		<br />
-                                <input type="radio" name="totop_position" value="br" id="totop_br" <?php if($totop_position=='br'){ echo "CHECKED"; } ?>><label for="totop_br"> Bottom Right</label>
-                        		<br />
-                                <input type="radio" name="totop_position" value="bm" id="totop_bm" <?php if($totop_position=='bm'){ echo "CHECKED"; } ?>><label for="totop_bm"> Bottom Middle</label>
-                                <br />
-                                <input type="radio" name="totop_position" value="tl" id="totop_tl" <?php if($totop_position=='tl'){ echo "CHECKED"; } ?>><label for="totop_tl"> Top Left</label>
-                        		<br />
-                                <input type="radio" name="totop_position" value="tr" id="totop_tr" <?php if($totop_position=='tr'){ echo "CHECKED"; } ?>><label for="totop_tr"> Top Right</label>
-                                <br />
-                                <input type="radio" name="totop_position" value="tm" id="totop_tm" <?php if($totop_position=='tm'){ echo "CHECKED"; } ?>><label for="totop_tm"> Top Middle</label>
-                                <br />
-                                <input type="radio" name="totop_position" value="ml" id="totop_ml" <?php if($totop_position=='ml'){ echo "CHECKED"; } ?>><label for="totop_ml"> Middle Left</label>
-                                <br />
-                                <input type="radio" name="totop_position" value="mr" id="totop_mr" <?php if($totop_position=='mr'){ echo "CHECKED"; } ?>><label for="totop_mr"> Middle Right</label>
-
+                    			<select type="select" name="totop_position" id="totop_position">
+                                    <option value="bl" id="totop_bl" <?php if($totop_position=='bl'){ echo 'selected="selected"'; } ?>>Bottom Left</option>
+                                    <option value="br" id="totop_br" <?php if($totop_position=='br'){ echo 'selected="selected"'; } ?>>Bottom Right</option>
+                                    <option value="bm" id="totop_bm" <?php if($totop_position=='bm'){ echo 'selected="selected"'; } ?>>Bottom Middle</option>
+                                    <option value="tl" id="totop_tl" <?php if($totop_position=='tl'){ echo 'selected="selected"'; } ?>>Top Left</option>
+                                    <option value="tr" id="totop_tr" <?php if($totop_position=='tr'){ echo 'selected="selected"'; } ?>>Top Right</option>
+                                    <option value="tm" id="totop_tm" <?php if($totop_position=='tm'){ echo 'selected="selected"'; } ?>>Top Middle</option>
+                                    <option value="ml" id="totop_ml" <?php if($totop_position=='ml'){ echo 'selected="selected"'; } ?>>Middle Left</option>
+                                    <option value="mr" id="totop_mr" <?php if($totop_position=='mr'){ echo 'selected="selected"'; } ?>>Middle Right</option>
+                                    <option value="custom" id="totop_custom" <?php if($totop_position=='custom'){ echo 'selected="selected"'; } ?>>Custom</option>
+                                </select>
                                 <p class="description">With this setting you can choose where you want the ToTop link to be displayed.</p>
+                                <p>&nbsp;</p>
+                                <p><strong>Custom Offset Position:</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+                                	<label for="totop_position_c[ct]">Top:</label> <input type="text" name="totop_position_c[top]" value="<?php echo $totop_position_c['top']; ?>" id="totop_position_ct" size="2">
+                                    <label for="totop_position_c[cl]">Left:</label> <input type="text" name="totop_position_c[left]" value="<?php echo $totop_position_c['left']; ?>" id="totop_position_cl" size="2">
+                                    <label for="totop_position_c[cb]">Bottom:</label> <input type="text" name="totop_position_c[bottom]" value="<?php echo $totop_position_c['bottom']; ?>" id="totop_position_cb" size="2">
+                                    <label for="totop_position_c[cr]">Right:</label> <input type="text" name="totop_position_c[right]" value="<?php echo $totop_position_c['right']; ?>" id="totop_position_cr" size="2">
+                                </p>
+                                <p class="description">Use the above fields to set the custom offsets for the ToTop image/link. Be sure to only set one horizontal and one vertical position (ie. Top and Left, not Top and Bottom). <em>Leave unused positions blank</em>.</p>
                             </td>
                         </tr>    
                         
@@ -114,7 +120,10 @@ function totop_menu() {
                                 <input type="radio" name="totop_style" value="dark" id="totop_dark" <?php if($totop_style=='dark'){ echo "CHECKED"; } ?>><label for="totop_dark"> Dark</label>
                                 <br />
                                 <input type="radio" name="totop_style" value="text" id="totop_text" <?php if($totop_style=='text'){ echo "CHECKED"; } ?>><label for="totop_text"> Text Link</label>
-			                    <p class="description">Choose "light" if your Web site's background colour is a dark colour. Choose "dark" if your background is a light colour.</p>
+                                <br />
+                                <input type="radio" name="totop_style" value="custom" id="totop_custom" <?php if($totop_style=='custom'){ echo "CHECKED"; } ?>><label for="totop_custom"> Custom Image</label>
+			                    <p class="description">Choose "Light" if your Web site's background colour is a dark colour. Choose "Dark" if your background is a light colour. If you prefer to use your own image, select "Custom", and include the URL to the image in the field below.</p>
+                                <p><label for="totop_style_c">Custom Image URL:</label><br /><input type="text" name="totop_style_c" value="<?php echo $totop_style_c; ?>" id="totop_style_c" size="40"></p>
                             </td>
                         </tr>
 
@@ -146,38 +155,41 @@ function totop_menu() {
 $totop_enabled = get_option('totop_enabled');
 if ($totop_enabled == 'enabled' && !is_admin()) {
 	$totop_position = get_option('totop_position');
+	if ($totop_position == 'custom') {
+		$totop_css_vars['pos'] = get_option('totop_position_c');
+	}
+
 	$totop_style = get_option('totop_style');
+	if ($totop_style != 'text') { 
+		$totop_img_src = ($totop_style == 'custom') ? get_option('totop_style_c') : plugin_dir_url(__FILE__).'images/totop-'.$totop_style.'.png';
+		$totop_img_size = getimagesize($totop_img_src);
+		$totop_css_vars['width'] = $totop_img_size[0];
+		$totop_css_vars['height'] = $totop_img_size[1];
+	} else {
+		$totop_css_vars['text-style'][0] = get_option('totop_link_style1');
+		$totop_css_vars['text-style'][1] = get_option('totop_link_style2');
+	}
 
 	add_action('wp_footer', 'totop_body_hook');
 	add_action('init','totop_init_hook');
 	function totop_body_hook() {
-		global $totop_style; global $totop_position;
-		$totop_class = 'totop-'.$totop_position . ' totop-' . $totop_style;
+		global $totop_style; global $totop_position; global $totop_img_src;
+		$totop_class = 'totop-'.$totop_position.' totop-'.$totop_style;
+
 		$totop_link_text = get_option('totop_link_text');
 		$totop_link_text = ($totop_link_text) ? $totop_link_text : __('Return to Top ▲');
-		echo '<a id="toTop" title="'.$totop_link_text.'" class="'.$totop_class.'"><span>'.$totop_link_text.'</span></a>';
+		$totop_img = ($totop_img_src) ? '<img src="'.$totop_img_src.'" alt="'.$totop_link_text.'" title="'.$totop_link_text.'" />' : '';
+		echo '<a id="toTop" title="'.$totop_link_text.'" class="'.$totop_class.'">'.$totop_img.'<span>'.$totop_link_text.'</span></a>';
 	}
 	
 	function totop_init_hook() {
-		wp_enqueue_style('totop',  plugin_dir_url(__FILE__).'totop-link.css');
+		global $totop_css_vars;
+		$totop_css = '?vars='.base64_encode(serialize($totop_css_vars));
+		wp_enqueue_style('totop',  plugin_dir_url(__FILE__).'totop-link.css.php?'.$totop_css);
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('totop', plugin_dir_url(__FILE__).'totop-link.js','jquery', '', false);
 	}
 	
-	if ($totop_style == 'text') {
-		$totop_link_style1 = get_option('totop_link_style1');
-		$totop_link_style2 = get_option('totop_link_style2');
-		if ($totop_link_style1 || $totop_link_style2) {
-			add_action('wp_head', 'totop_head_hook');
-			function totop_head_hook() {
-				global $totop_link_style1; global $totop_link_style2;
-				echo '<style media="screen" type="text/css">
-					a#toTop {color:'.$totop_link_style1.'}
-					a#toTop:hover, a#toTop:active {color:'.$totop_link_style2.'}
-				</style>';
-			}
-		}
-	}
 }
 
 
