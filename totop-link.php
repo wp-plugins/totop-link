@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ToTop Link
-Version: 1.2
+Version: 1.3
 Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
@@ -50,6 +50,8 @@ function totop_menu() {
 		// update link styles
 		update_option('totop_style', mysql_escape_string($_REQUEST['totop_style']));
 		update_option('totop_style_c', mysql_escape_string($_REQUEST['totop_style_c']));
+		update_option('totop_style_w', mysql_escape_string($_REQUEST['totop_style_w']));
+		update_option('totop_style_h', mysql_escape_string($_REQUEST['totop_style_h']));
 
 		// update text link styles
 		update_option('totop_link_text', mysql_escape_string($_REQUEST['totop_link_text']));
@@ -65,15 +67,30 @@ function totop_menu() {
 	$totop_position_c = get_option('totop_position_c');
 	$totop_style = get_option('totop_style');
 	$totop_style_c = get_option('totop_style_c');
+	$totop_style_w = get_option('totop_style_w');
+	$totop_style_h = get_option('totop_style_h');
 	$totop_link_text = get_option('totop_link_text');
 	$totop_link_style1 = get_option('totop_link_style1');
 	$totop_link_style2 = get_option('totop_link_style2');
 	?>
-	
+	<style>
+		.wrap {border:1px solid #ddd;background:#006699;border-radius:20px;padding:0 20px;}
+		.wrap h2 {color:#fff;text-shadow:1px 1px 1px #003366;float:left;}
+		.form-table {border:1px solid #ddd;box-shadow:0px 0px 10px #003366;}
+		.form-table th {font-weight:bold;background:#eee;border-right:1px solid #ccc;border-bottom:1px solid #ddd;}
+		.form-table td {background:#f3f3f3;border-bottom:1px solid #ddd;}
+		.form-table td .description {padding:5px;border:1px solid #eee;background:#fff}
+		a.buyusacoffee:link, a.buyusacoffee:visited {float:right;font-size:18px;color:#fff;text-shadow:1px 1px 1px #003366;line-height:32px;text-decoration:none;}
+		a.buyusacoffee:hover, a.buyusacoffee:active {color:#22AFC5;}
+		a.buyusacoffee img {vertical-align:middle;}
+		a.buyusacoffee-top {padding:9px 0 4px 15px;}
+		#message {clear:both;}
+	</style>
+    	
 	<div class="wrap" id="totop_options">
+		<a href="http://www.daobydesign.com/buy-us-a-coffee/" class="buyusacoffee buyusacoffee-top" target="_blank" title="... because we'd sure appreciate it!">Like this plugin? Buy us a coffee! <img src="<?php echo plugin_dir_url(__FILE__); ?>/images/coffee_mug.png" /></a>
 	    <div class="icon32" id="icon-options-general"><br></div>
 		<h2>ToTop Link Settings</h2>
-
         <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post" id="totop_options_form" name="totop_options_form">
                 <table class="form-table">
                 	<tbody>
@@ -123,9 +140,20 @@ function totop_menu() {
                                 <br />
                                 <input type="radio" name="totop_style" value="custom" id="totop_custom" <?php if($totop_style=='custom'){ echo "CHECKED"; } ?>><label for="totop_custom"> Custom Image</label>
 			                    <p class="description">Choose "Light" if your Web site's background colour is a dark colour. Choose "Dark" if your background is a light colour. If you prefer to use your own image, select "Custom", and include the URL to the image in the field below.</p>
-                                <p><label for="totop_style_c">Custom Image URL:</label><br /><input type="text" name="totop_style_c" value="<?php echo $totop_style_c; ?>" id="totop_style_c" size="40"></p>
                             </td>
                         </tr>
+
+                        <tr valign="top">
+		                    <th>Custom Image</th>
+							<td>
+                            	<label for="totop_style_c">Custom Image URL:</label><br /><input type="text" name="totop_style_c" value="<?php echo $totop_style_c; ?>" id="totop_style_c" style="width:60%;">
+                                <br />
+                                <label for="totop_style_w">Custom Image Width:</label> <input type="text" name="totop_style_w" value="<?php echo $totop_style_w; ?>" id="totop_style_w" size="3" >
+                                <label for="totop_style_h">Custom Image Height:</label> <input type="text" name="totop_style_h" value="<?php echo $totop_style_h; ?>" id="totop_style_h" size="3" >
+			                    <p class="description">The height and width should auto-populate with the size of the image supplied in the "Custom Image URL" field above. If not, or if you'd like to customize the height and width, please add the values above.</p>
+                            </td>
+                        </tr>
+
 
 						<tr valign="top">
                     		<th>ToTop Text Link Config.<br /><small>(Optional)</small></th>
@@ -144,9 +172,20 @@ function totop_menu() {
                 <p class="submit">
                     <input name="save" id="save" style='width:100px' value="Save Changes" type="submit" />
                     <input name="clear" id="reset" style='width:100px' value="Reset Options" type="submit" />
+	                <a href="http://www.daobydesign.com/buy-us-a-coffee/" class="buyusacoffee" target="_blank" title="... because we'd sure appreciate it!">Like this plugin? Buy us a coffee! <img src="<?php echo plugin_dir_url(__FILE__); ?>/images/coffee_mug.png" /></a>
                 </p>
         </form>
 	</div>
+    <script type="text/javascript" language="javascript">
+		jQuery('#totop_style_c').change(function() {
+			var $cimg = new Image();
+			$cimg.onload = function() {
+				if (!jQuery('#totop_style_w').val()) { jQuery('#totop_style_w').val(this.width); }
+				if (!jQuery('#totop_style_h').val()) { jQuery('#totop_style_h').val(this.height); }
+			}
+			$cimg.src = jQuery('#totop_style_c').val();
+		});
+	</script>
 	
 <?php
 }
@@ -161,10 +200,15 @@ if ($totop_enabled == 'enabled' && !is_admin()) {
 
 	$totop_style = get_option('totop_style');
 	if ($totop_style != 'text') { 
-		$totop_img_src = ($totop_style == 'custom') ? get_option('totop_style_c') : plugin_dir_url(__FILE__).'images/totop-'.$totop_style.'.png';
-		$totop_img_size = getimagesize($totop_img_src);
-		$totop_css_vars['width'] = $totop_img_size[0];
-		$totop_css_vars['height'] = $totop_img_size[1];
+		if ($totop_style == 'custom') {
+			$totop_img_src = get_option('totop_style_c');
+			$totop_css_vars['width'] = get_option('totop_style_w');
+			$totop_css_vars['height'] = get_option('totop_style_h');		
+		} else {
+			$totop_img_src = plugin_dir_url(__FILE__).'images/totop-'.$totop_style.'.png';
+			$totop_css_vars['width'] = '40';	
+			$totop_css_vars['height'] = '48';	
+		}
 	} else {
 		$totop_css_vars['text-style'][0] = get_option('totop_link_style1');
 		$totop_css_vars['text-style'][1] = get_option('totop_link_style2');
@@ -173,12 +217,12 @@ if ($totop_enabled == 'enabled' && !is_admin()) {
 	add_action('wp_footer', 'totop_body_hook');
 	add_action('init','totop_init_hook');
 	function totop_body_hook() {
-		global $totop_style; global $totop_position; global $totop_img_src;
+		global $totop_style; global $totop_position; global $totop_img_src; global $totop_css_vars;
 		$totop_class = 'totop-'.$totop_position.' totop-'.$totop_style;
 
 		$totop_link_text = get_option('totop_link_text');
 		$totop_link_text = ($totop_link_text) ? $totop_link_text : __('Return to Top ▲');
-		$totop_img = ($totop_img_src) ? '<img src="'.$totop_img_src.'" alt="'.$totop_link_text.'" title="'.$totop_link_text.'" />' : '';
+		$totop_img = ($totop_img_src) ? '<img src="'.$totop_img_src.'" alt="'.$totop_link_text.'" title="'.$totop_link_text.'" width="'.$totop_css_vars['width'].'" height="'.$totop_css_vars['height'].'" />' : '';
 		echo '<a id="toTop" title="'.$totop_link_text.'" class="'.$totop_class.'">'.$totop_img.'<span>'.$totop_link_text.'</span></a>';
 	}
 	

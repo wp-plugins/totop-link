@@ -1,10 +1,10 @@
-=== ToTop Link ===
+﻿=== ToTop Link ===
 Contributors: daobydesign
-Donate link: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
+Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 Tags: utility, top link, navigation, usability, ui, return to top, ux
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 1.2
+Stable tag: 1.3
 
 A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog.
 
@@ -34,6 +34,8 @@ This plugin is released under a GPL license.
 Easier just to view the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a live demo.
 
 == Changelog ==
+= 1.3 =
+* A quick update to fix a bug with getimagesize. Also took the opportunity to clean up the settings page.
 
 = 1.2 =
 * Added ability to fully-customize the position of the ToTop link, as well as add custom images for the link.
