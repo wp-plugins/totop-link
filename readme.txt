@@ -1,10 +1,10 @@
 === Contact Form 7 Honeypot ===
 Tags: honeypot, antispam, captcha, spam, form, forms, contact form 7, contactform7, contact form, cf7, cforms, Contact Forms 7, Contact Forms, contacts
 Requires at least: 2.8
-Tested up to: 3.2
+Tested up to: 3.4.1
 Stable tag: trunk
 Contributors: DaoByDesign
-Donate link:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40daobydesign%2ecom&item_name=Contact%20Form%207%20Honeypot&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
+Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 
 Contact Form 7 - Adds honeypot functionality to Contact Form 7 forms.
 
@@ -13,6 +13,8 @@ Contact Form 7 - Adds honeypot functionality to Contact Form 7 forms.
 This simple addition to the wonderful <a href="http://wordpress.org/extend/plugins/contact-form-7/">Contact Form 7</a> plugin adds basic honeypot functionality to thwart spambots without the need for an ugly captcha.
 
 The principle of a honeypot is simple -- <em>bots are stupid</em>. While some spam is hand-delivered, the vast majority is submitted by bots scripted in a specific (wide-scope) way to submit spam to the largest number of form types. In this way they somewhat blindly fill in fields, irregardless of whether the field should be filled in or not. This is how a honeypot catches the bot -- it introduces an additional field in the form that if filled out will cause the form not to validate.
+
+Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news.
 
 Visit the <a href="http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-form-7-wordpress-plugin">Contact Form 7 Honeypot plugin page</a> for support & additional information.
 
