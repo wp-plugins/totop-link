@@ -1,6 +1,8 @@
 jQuery(function() {
 	jQuery(window).scroll(function() {
-		if(jQuery(this).scrollTop() != 0) {
+		var soffset = jQuery('#toTop').attr('rel');
+		soffset = (soffset) ? soffset : 0;
+		if(jQuery(this).scrollTop() > soffset) {
 			jQuery('#toTop').fadeIn();	
 		} else {
 			jQuery('#toTop').fadeOut();

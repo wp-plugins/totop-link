@@ -3,8 +3,8 @@ Contributors: daobydesign
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 Tags: utility, top link, navigation, usability, ui, return to top, ux
 Requires at least: 2.8
-Tested up to: 3.3.1
-Stable tag: 1.3
+Tested up to: 3.4.1
+Stable tag: 1.4
 
 A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog.
 
@@ -12,6 +12,8 @@ A simple plugin for WordPress that adds an unobtrusive "back to top" link to you
 A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog. The link uses WordPress' included jQuery to provide a slick UX, with the link subtly appearing after the page has been scrolled, and disappearing once the user returns to the top of the page. Additionally, a smooth scrolling animation is added when the link is clicked on.
 
 You can easily customize the link's position, style and/or text. Additionally, you can either use the included arrow images or define your own custom image to use.
+
+Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news.
 
 Demo: Check out the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a demo.
 
@@ -21,6 +23,9 @@ Demo: Check out the [plugin's page](http://www.daobydesign.com/free-plugins/toto
 * Go to Settings->ToTop Link in the WordPress admin area, and customize.
 
 == Frequently Asked Questions ==
+= Where can I get support or news about updates? =
+Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news. Also check out the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/).
+
 = Where can I see a demo of this in action? =
 Check out the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/)
 
@@ -34,6 +39,9 @@ This plugin is released under a GPL license.
 Easier just to view the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a live demo.
 
 == Changelog ==
+= 1.4 =
+* Added a scroll offset to allow defining when the ToTop link appears.
+
 = 1.3 =
 * A quick update to fix a bug with getimagesize. Also took the opportunity to clean up the settings page.
 
