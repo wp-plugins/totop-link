@@ -42,5 +42,8 @@ Visit the <a href="http://www.daobydesign.com/free-plugins/honeypot-module-for-c
 
 == Changelog ==
 
+= 1.1 =
+Small update for W3C compliance. Thanks <a href="http://wordpress.org/support/topic/plugin-contact-form-7-honeypot-not-w3c-compliant">Jeff</a>.
+
 = 1.0.0 =
 * Initial release.

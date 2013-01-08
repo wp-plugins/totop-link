@@ -5,10 +5,10 @@ Plugin URI: http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-
 Description: Add honeypot functionality to the popular Contact Form 7 plugin.
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
-Version: 1.0.0
+Version: 1.1
 */
 
-/*  Copyright 2011  Dao By Design  (email : info@daobydesign.com)
+/*  Copyright 2013  Dao By Design  (email : info@daobydesign.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,13 +74,11 @@ function wpcf7_honeypot_shortcode_handler( $tag ) {
 	if ( is_a( $wpcf7_contact_form, 'WPCF7_ContactForm' ) )
 		$validation_error = $wpcf7_contact_form->validation_error( $name );
 
- 	$html = '<div style="display:none;" class="hidden">
-		<label for="email-wpcf7-hp"><small>Leave this field empty.</small></label>
-		<input class="wpcf7-text"  type="text" name="email-wpcf7-hp" id="email-wpcf7-hp" value="" size="40" tabindex="3" />
-	</div>';
+ 	$html = '<label for="email-wpcf7-hp"><small>Leave this field empty.</small></label>
+		<input class="wpcf7-text"  type="text" name="email-wpcf7-hp" id="email-wpcf7-hp" value="" size="40" tabindex="3" />';
    
    
-	$html = '<span class="wpcf7-form-control-wrap ' . $name . '">' . $html . $validation_error . '</span>';
+	$html = '<span class="wpcf7-form-control-wrap hidden' . $name . '" style="display:none;">' . $html . $validation_error . '</span>';
 
 	return $html;
 }
