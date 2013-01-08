@@ -3,7 +3,7 @@ Contributors: daobydesign
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 Tags: utility, top link, navigation, usability, ui, return to top, ux
 Requires at least: 2.8
-Tested up to: 3.4.1
+Tested up to: 3.5
 Stable tag: 1.4
 
 A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog.
