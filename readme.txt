@@ -4,7 +4,7 @@ Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 Tags: utility, top link, navigation, usability, ui, return to top, ux
 Requires at least: 2.8
 Tested up to: 3.5.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
 A simple plugin for WordPress that adds an unobtrusive "back to top" link to your site or blog.
 
@@ -39,7 +39,10 @@ This plugin is released under a GPL license.
 Easier just to view the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a live demo.
 
 == Changelog ==
-= 1.5 =
+= 1.5.2 =
+* Added new option to customize scroll to top speed.
+
+= 1.5 & 1.5.1 =
 * Fixed "Invalid argument supplied for foreach()" error.
 
 = 1.4 =

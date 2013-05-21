@@ -54,6 +54,7 @@ function totop_menu() {
 		update_option('totop_style_h', mysql_escape_string($_REQUEST['totop_style_h']));
 		
 		update_option('totop_scroll_offset', mysql_escape_string($_REQUEST['totop_scroll_offset']));
+		update_option('totop_scroll_speed', mysql_escape_string($_REQUEST['totop_scroll_speed']));
 		
 		// update text link styles
 		update_option('totop_link_text', mysql_escape_string($_REQUEST['totop_link_text']));
@@ -72,6 +73,7 @@ function totop_menu() {
 	$totop_style_w = get_option('totop_style_w');
 	$totop_style_h = get_option('totop_style_h');
 	$totop_scroll_offset = get_option('totop_scroll_offset');
+	$totop_scroll_speed = get_option('totop_scroll_speed');
 	$totop_link_text = get_option('totop_link_text');
 	$totop_link_style1 = get_option('totop_link_style1');
 	$totop_link_style2 = get_option('totop_link_style2');
@@ -158,6 +160,14 @@ function totop_menu() {
                         </tr>
 
                         <tr valign="top">
+		                    <th>ToTop Scroll Speed</th>
+							<td>
+                            	<input type="text" name="totop_scroll_speed" value="<?php echo $totop_scroll_speed; ?>" id="totop_scroll_speed" size="4"><label for="totop_scroll_speed">ms</label> 
+			                    <p class="description">This setting allows you to set how fast the page will scroll back to the top once the ToTop Link is clicked. <strong>Include an integer in milliseconds. If left blank, the default '800' will be used.</strong></p>
+                            </td>
+                        </tr>
+
+                        <tr valign="top">
 		                    <th>Custom Image</th>
 							<td>
                             	<label for="totop_style_c">Custom Image URL:</label><br /><input type="text" name="totop_style_c" value="<?php echo $totop_style_c; ?>" id="totop_style_c" style="width:60%;">
@@ -180,6 +190,7 @@ function totop_menu() {
                     			<p class="description">Insert the HEX value with hash symbol (e.g. #336600) for the regular and hover link colours. Leave blank if you wish to use your theme's defaults.</p>
 							</td>
                         </tr>
+
                         <tr valign="middle" class="dbd-credit">
         					<th colspan="2">Like this plugin? <a href="http://www.twitter.com/daobydesign" target="_blank">Follow us on Twitter</a>, <a href="http://www.facebook.com/daobydesign" target="_blank">Like is on Facebook</a> or just <a href="http://www.daobydesign.com/buy-us-a-coffee/" class="buyusacoffee buyusacoffee-top" target="_blank" title="... because we'd sure appreciate it!">buy us a coffee! <img src="<?php echo plugin_dir_url(__FILE__); ?>/images/coffee_mug.png" /></a></th>
                         </tr>
@@ -246,11 +257,11 @@ if ($totop_enabled == 'enabled' && !is_admin()) {
 	}
 	
 	function totop_init_hook() {
-		global $totop_css_vars;
+		global $totop_css_vars; $totop_scroll_speed = get_option('totop_scroll_speed');
 		$totop_css = '?vars='.base64_encode(serialize($totop_css_vars));
 		wp_enqueue_style('totop',  plugin_dir_url(__FILE__).'totop-link.css.php?'.$totop_css);
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('totop', plugin_dir_url(__FILE__).'totop-link.js','jquery', '', false);
+		wp_enqueue_script('totop', plugin_dir_url(__FILE__).'totop-link.js.php?speed='.$totop_scroll_speed,'jquery', '', false);
 	}
 	
 }
