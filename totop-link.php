@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ToTop Link
-Version: 1.5.1
+Version: 1.5.2
 Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
