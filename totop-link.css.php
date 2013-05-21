@@ -24,10 +24,10 @@ $txtcolour2 = (!empty($vars['text-style'][1])) ? 'color:'.$vars['text-style'][1]
 #toTop.totop-ml {top:49%;left:10px;}
 #toTop.totop-mr {top:49%;right:10px;}
 
-<?php $pos_cust = '';
-if (!empty($vars['pos'])) {
-	foreach ($vars['pos'] as $key => $val) {
-		if ($val != null) { $pos_cust .= $key.':'.$val.'px;'; }
-	} 
+<?php if (!empty($vars['pos'])) {
+$pos_cust = '';
+foreach ($vars['pos'] as $key => $val) {
+	if ($val != null) { $pos_cust .= $key.':'.$val.'px;'; }
 } ?>
 #toTop.totop-custom {<?php echo $pos_cust; ?>}
+<?php } ?>
