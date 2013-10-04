@@ -5,7 +5,7 @@ Plugin URI: http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-
 Description: Add honeypot functionality to the popular Contact Form 7 plugin.
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
-Version: 1.1
+Version: 1.2
 */
 
 /*  Copyright 2013  Dao By Design  (email : info@daobydesign.com)
@@ -42,9 +42,9 @@ function wpcf7_honeypot_loader() {
 		function cfhiddenfieldserror() {
 			$out = '<div class="error" id="messages"><p>';
 			if(file_exists(WP_PLUGIN_DIR.'/contact-form-7/wp-contact-form-7.php')) {
-				$out .= 'The Contact Form 7 is installed, but <strong>you must activate Contact Form 7</strong> below for the Honeypot Module to work.';
+				$out .= __('The Contact Form 7 is installed, but <strong>you must activate Contact Form 7</strong> below for the Honeypot Module to work.','wpcf7_honeypot');
 			} else {
-				$out .= 'The Contact Form 7 plugin must be installed for the Honeypot Module to work. <a href="'.admin_url('plugin-install.php?tab=plugin-information&plugin=contact-form-7&from=plugins&TB_iframe=true&width=600&height=550').'" class="thickbox" title="Contact Form 7">Install Now.</a>';
+				$out .= __('The Contact Form 7 plugin must be installed for the Honeypot Module to work. <a href="'.admin_url('plugin-install.php?tab=plugin-information&plugin=contact-form-7&from=plugins&TB_iframe=true&width=600&height=550').'" class="thickbox" title="Contact Form 7">Install Now.</a>', 'wpcf7_honeypot');
 			}
 			$out .= '</p></div>';	
 			echo $out;
@@ -74,7 +74,7 @@ function wpcf7_honeypot_shortcode_handler( $tag ) {
 	if ( is_a( $wpcf7_contact_form, 'WPCF7_ContactForm' ) )
 		$validation_error = $wpcf7_contact_form->validation_error( $name );
 
- 	$html = '<label for="email-wpcf7-hp"><small>Leave this field empty.</small></label>
+ 	$html = '<label for="email-wpcf7-hp"><small>'.__('Leave this field empty.','wpcf7_honeypot').'</small></label>
 		<input class="wpcf7-text"  type="text" name="email-wpcf7-hp" id="email-wpcf7-hp" value="" size="40" tabindex="3" />';
    
    
@@ -122,11 +122,11 @@ function wpcf7_tg_pane_honeypot( &$contact_form ) { ?>
 				<tr><td>
 					<?php echo esc_html( __( 'Name', 'wpcf7' ) ); ?>
 					<br /><input type="text" name="name" class="tg-name oneline" />
-					<br /><em><small><?php echo esc_html( __( 'For better security, change "honeypot" to something less bot-recognizable.', 'wpcf7' ) ); ?></small></em>
+					<br /><em><small><?php echo esc_html( __( 'For better security, change "honeypot" to something less bot-recognizable.', 'wpcf7_honeypot' ) ); ?></small></em>
 				</td><td></td></tr>
 			</table>
 			
-			<div class="tg-tag"><?php echo esc_html( __( "Copy this code and paste it into the form left.", 'wpcf7' ) ); ?><br /><input type="text" name="honeypot" class="tag" readonly="readonly" onfocus="this.select()" /></div>
+			<div class="tg-tag"><?php echo esc_html( __( "Copy this code and paste it into the form left.", 'wpcf7_honeypot' ) ); ?><br /><input type="text" name="honeypot" class="tag" readonly="readonly" onfocus="this.select()" /></div>
 		</form>
 	</div>
 

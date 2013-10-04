@@ -1,7 +1,7 @@
 === Contact Form 7 Honeypot ===
 Tags: honeypot, antispam, captcha, spam, form, forms, contact form 7, contactform7, contact form, cf7, cforms, Contact Forms 7, Contact Forms, contacts
 Requires at least: 2.8
-Tested up to: 3.5
+Tested up to: 3.6.1
 Stable tag: trunk
 Contributors: DaoByDesign
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
@@ -41,6 +41,9 @@ Visit the <a href="http://www.daobydesign.com/free-plugins/honeypot-module-for-c
 * This plugin is released under a GPL license.
 
 == Changelog ==
+
+= 1.2 =
+Small update to add better i18n and WPML compatibility.
 
 = 1.1 =
 Small update for W3C compliance. Thanks <a href="http://wordpress.org/support/topic/plugin-contact-form-7-honeypot-not-w3c-compliant">Jeff</a>.
