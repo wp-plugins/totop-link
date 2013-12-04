@@ -41,6 +41,8 @@ Visit the <a href="http://www.daobydesign.com/free-plugins/honeypot-module-for-c
 * This plugin is released under a GPL license.
 
 == Changelog ==
+= 1.3 =
+Update to improve outputted HTML for better standards compliance when the same form appears multiple times on the same page.
 
 = 1.2 =
 Small update to add better i18n and WPML compatibility.
