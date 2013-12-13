@@ -5,7 +5,7 @@ Plugin URI: http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-
 Description: Add honeypot functionality to the popular Contact Form 7 plugin.
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
-Version: 1.4
+Version: 1.5
 */
 
 /*  Copyright 2013  Dao By Design  (email : info@daobydesign.com)
@@ -64,23 +64,27 @@ function wpcf7_honeypot_shortcode_handler( $tag ) {
 	if ( ! is_array( $tag ) )
 		return '';
 
-	$type = $tag['type'];
-	$name = $tag['name'];
-
-	if ( empty( $name ) )
+	if ( empty( $tag['name'] ) )
 		return '';
 
 	$validation_error = '';
 	if ( is_a( $wpcf7_contact_form, 'WPCF7_ContactForm' ) )
-		$validation_error = $wpcf7_contact_form->validation_error( $name );
+		$validation_error = $wpcf7_contact_form->validation_error( $tag['name'] );
 
- 	$html = '<label for="wpcf7-' . $name . '"><small>'.__('Leave this field empty.','wpcf7_honeypot').'</small></label>
-		<input class="wpcf7-form-control wpcf7-text wpcf7-' . $name . '"  type="text" name="wpcf7-' . $name . '" value="" size="40" tabindex="-1" />';
-   
-   
-	$html = '<span class="wpcf7-form-control-wrap ' . $name . '-wrap" style="display:none !important;visibility:hidden !important;">' . $html . $validation_error . '</span>';
+	$hp_args = array(	'name' => $tag['name'],
+						'type' => $tag['type'],
+						'hpid' => $wpcf7_contact_form->unit_tag.'-'.$tag['name'],
+						'validation_error' => $validation_error
+	);
 
-	return $html;
+	   
+	$html = '<span class="wpcf7-form-control-wrap ' . $hp_args['name'] . '-wrap" style="display:none !important;visibility:hidden !important;">';
+	$html .= '<label for="' . $hp_args['hpid'] . '"><small>'.__('Leave this field empty.','wpcf7_honeypot').'</small></label>
+		<input id="' . $hp_args['hpid'] . '" class="wpcf7-form-control wpcf7-text wpcf7-' . $hp_args['name'] . '"  type="text" name="wpcf7-' . $hp_args['name'] . '" value="" size="40" tabindex="-1" />';
+	$html .= $hp_args['validation_error'] . '</span>';
+
+	// Hook for filtering finished Honeypot form element.
+	return apply_filters('wpcf7_honeypot_html_output',$html, $hp_args);
 }
 
 
