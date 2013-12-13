@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: ToTop Link
-Version: 1.5.2
+Version: 1.5.3
 Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
@@ -79,13 +79,12 @@ function totop_menu() {
 	$totop_link_style2 = get_option('totop_link_style2');
 	?>
 	<style>
-		.wrap {border:1px solid #ddd;background:#006699;border-radius:10px;padding:0 20px;}
-		.wrap h2 {color:#fff;text-shadow:1px 1px 1px #003366;float:left;}
-		.form-table {border:1px solid #ddd;box-shadow:0px 0px 10px #003366;}
+		.form-table {border:1px solid #ddd;}
+		.form-table td, .form-table th {padding:15px 10px;}
 		.form-table th {font-weight:bold;background:#eee;border-right:1px solid #ccc;border-bottom:1px solid #ddd;}
 		.form-table td {background:#f3f3f3;border-bottom:1px solid #ddd;}
-		.form-table td .description {padding:5px;border:1px solid #eee;background:#fff}
-		.dbd-credit th {font-weight:bold;background:#ffffdd;border-right:1px solid #ffffdd;vertical-align:middle;}
+		.form-table td .description {padding:5px;border:1px solid #eee;background:#f6f6f6;color:#999;}
+		.dbd-credit th {font-weight:bold;background:#ffffdd;text-align:right;vertical-align:middle;padding:5px 10px;}
 		.dbd-credit a:link, .dbd-credit a:visited {color:#22AFC5;text-decoration:none;}
 		.dbd-credit a:hover, .dbd-credit a:active {color:#ff0000;}
 		a.buyusacoffee img {vertical-align:middle;}
@@ -198,8 +197,8 @@ function totop_menu() {
                 	</tbody>
           		</table>
                 <p class="submit">
-                    <input name="save" id="save" style='width:100px' value="Save Changes" type="submit" />
-                    <input name="clear" id="reset" style='width:100px' value="Reset Options" type="submit" />
+                    <input name="save" id="save" class="button button-primary" value="Save Changes" type="submit" />
+                    <input name="clear" id="reset" class="button" value="Reset Options" type="submit" />
 	                
                 </p>
         </form>
