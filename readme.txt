@@ -1,8 +1,8 @@
 === Contact Form 7 Honeypot ===
 Tags: honeypot, antispam, captcha, spam, form, forms, contact form 7, contactform7, contact form, cf7, cforms, Contact Forms 7, Contact Forms, contacts
 Requires at least: 2.8
-Tested up to: 3.8
-Stable tag: 1.5
+Tested up to: 3.8.1
+Stable tag: 1.6
 Contributors: DaoByDesign
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 License: GPLv2 or later
@@ -55,6 +55,9 @@ add_filter('wpcf7_honeypot_html_output', 'my_honeypot_override', 10, 2 ); ?>`
 * Yep! New in version 1.5 of the plugin you're able to adjust the HTML by hooking the output filter for the plugin. See the **Installation** section for more details.
 
 == Changelog ==
+= 1.6 =
+Quite a lot of code clean-up. This shouldn't result in any changes to the regular output, but it's worth checking your forms after updating. Also, you'll note that you now have the ability to add a custom CLASS and ID attributes when generating the Honeypot shortcode (in the CF7 form editor).
+
 = 1.5 =
 Added filter hook for greater extensibility. See installation section for more details.
 
@@ -74,6 +77,9 @@ Small update for W3C compliance. Thanks <a href="http://wordpress.org/support/to
 * Initial release.
 
 == Upgrade Notice ==
+= 1.6 =
+New custom "class" and "id" attributes. Upgrade recommended.
+
 = 1.5 =
 Includes "showing shortcode" fix from version 1.4 and also includes new filter hook. Upgrade recommended.
 
