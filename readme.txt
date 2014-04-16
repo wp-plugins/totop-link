@@ -18,7 +18,9 @@ The principle of a honeypot is simple -- <em>bots are stupid</em>. While some sp
 
 Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news.
 
-Visit the [Contact Form 7 Honeypot plugin page](http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-form-7-wordpress-plugin) for support & additional information.
+<strong>Support can be found [here](http://wordpress.org/support/plugin/contact-form-7-honeypot).</strong>
+
+Visit the [Contact Form 7 Honeypot plugin page](http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-form-7-wordpress-plugin) for installation & additional information.
 
 <strong>NOTE:</strong> If your contact form honeypot shortcode is visible on your form after updating to CF7 3.6, please make sure you update to version 1.4 of this plugin or higher.
 
