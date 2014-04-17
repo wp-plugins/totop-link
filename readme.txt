@@ -32,6 +32,9 @@ Visit the [Contact Form 7 Honeypot plugin page](http://www.daobydesign.com/free-
 1. Choose "Honeypot" from the Generate Tag dropdown. <em>Recommended: change the honeypot element's ID.</em>
 1. Insert the generated tag anywhere in your form. The added field uses inline CSS styles to hide the field from your visitors.
 
+= Installation & Usage Video =
+For the more visually-minded, here is a [short video showing how to install and use CF7 Honeypot](https://www.youtube.com/watch?v=yD2lBrU0gA0) from the fine folks at RoseApple Media.
+
 = Altering the Honeypot Output HTML [ADVANCED] =
 Should you wish to, you can change the outputted Honeypot HTML by using the **wpcf7_honeypot_html_output** filter.
 
