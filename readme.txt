@@ -17,12 +17,12 @@ This simple addition to the wonderful <a href="http://wordpress.org/extend/plugi
 The principle of a honeypot is simple -- <em>bots are stupid</em>. While some spam is hand-delivered, the vast majority is submitted by bots scripted in a specific (wide-scope) way to submit spam to the largest number of form types. In this way they somewhat blindly fill in fields, irregardless of whether the field should be filled in or not. This is how a honeypot catches the bot -- it introduces an additional field in the form that if filled out will cause the form not to validate.
 
 Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news.
-
+----
+<strong>IMPORTANT NOTE:</strong> If you are using CF7 3.6+, use the latest version of this plugin. If you are using an older version of CF7, you will need to use [CF7 Honeypot v1.3](http://downloads.wordpress.org/plugin/contact-form-7-honeypot.1.3.zip).
+----
 <strong>Support can be found [here](http://wordpress.org/support/plugin/contact-form-7-honeypot).</strong>
 
 Visit the [Contact Form 7 Honeypot plugin page](http://www.daobydesign.com/free-plugins/honeypot-module-for-contact-form-7-wordpress-plugin) for installation & additional information.
-
-<strong>NOTE:</strong> If your contact form honeypot shortcode is visible on your form after updating to CF7 3.6, please make sure you update to version 1.4 of this plugin or higher.
 
 == Installation ==
 
