@@ -18,7 +18,7 @@ The principle of a honeypot is simple -- <em>bots are stupid</em>. While some sp
 
 Follow us on [Twitter](http://www.twitter.com/daobydesign) and on [Facebook](http://www.facebook.com/daobydesign) for updates and news.
 
-=IMPORTANT NOTE:=
+= IMPORTANT NOTE: =
 If you are using CF7 3.6+, use the latest version of this plugin. If you are using an older version of CF7, you will need to use [CF7 Honeypot v1.3](http://downloads.wordpress.org/plugin/contact-form-7-honeypot.1.3.zip).
 
 <strong>Support can be found [here](http://wordpress.org/support/plugin/contact-form-7-honeypot).</strong>
@@ -34,6 +34,7 @@ Visit the [Contact Form 7 Honeypot plugin page](http://www.daobydesign.com/free-
 1. Insert the generated tag anywhere in your form. The added field uses inline CSS styles to hide the field from your visitors.
 
 = Installation & Usage Video =
+[youtube https://www.youtube.com/watch?v=yD2lBrU0gA0]
 For the more visually-minded, here is a [short video showing how to install and use CF7 Honeypot](https://www.youtube.com/watch?v=yD2lBrU0gA0) from the fine folks at RoseApple Media.
 
 = Altering the Honeypot Output HTML [ADVANCED] =
@@ -84,7 +85,7 @@ Small update for W3C compliance. Thanks <a href="http://wordpress.org/support/to
 
 == Upgrade Notice ==
 = 1.6 =
-New custom "class" and "id" attributes. Upgrade recommended.
+New custom "class" and "id" attributes. Upgrade recommended if you are using CF7 3.6+, otherwise use v1.3 of this plugin.
 
 = 1.5 =
 Includes "showing shortcode" fix from version 1.4 and also includes new filter hook. Upgrade recommended.
