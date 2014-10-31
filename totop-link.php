@@ -28,6 +28,14 @@ License: GPL2
 
 */
 
+global $dbd_totoplink_version;
+$dbd_totoplink_version = 1.6;
+
+/* ***********
+*
+* Initialize plugin on activation
+*
+*********** */
 function dbd_totop_on_activation() {
     if ( ! current_user_can( 'activate_plugins' ) )
         return;
@@ -35,45 +43,11 @@ function dbd_totop_on_activation() {
     $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
     check_admin_referer( "activate-plugin_{$plugin}" );
 
-    // Check if has old plugin options (pre 1.6) and migrates if present, regular init otherwise.
-    if (get_option('totop_enabled') && get_option('totop_position')) {
-		return dbd_totop_restore_config('old');
-	} else {
-		// Regular init
-		return dbd_totop_restore_config('init');
-	}
-}
-
-function dbd_totop_on_deactivation() {
-    if ( ! current_user_can( 'activate_plugins' ) )
-        return;
-    $plugin = isset( $_REQUEST['plugin'] ) ? $_REQUEST['plugin'] : '';
-    check_admin_referer( "deactivate-plugin_{$plugin}" );
-
-    // Currently no actions for deactivation.
-}
-
-function dbd_totop_on_uninstall() {
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-    	return;
-    }
-
-    check_admin_referer( 'bulk-plugins' );
-
-    // Important: Check if the file is the one that was registered during the uninstall hook.
-    if ( __FILE__ != WP_UNINSTALL_PLUGIN ) {
-        return;
-    }
-
-    // Remove options from DB on uninstall.
-    if (current_user_can('manage_options')) {
-    	delete_option('dbd_totoplink');
-    }
+	// Initialize option values
+	return dbd_totop_restore_config('init');
 }
 
 register_activation_hook(__FILE__, 'dbd_totop_on_activation');
-register_deactivation_hook(__FILE__, 'dbd_totop_on_deactivation');
-register_uninstall_hook(__FILE__, 'dbd_totop_on_uninstall');
 
 
 /* ***********
@@ -89,57 +63,27 @@ function dbd_totop_restore_config($type=false) {
 
 	$totop_vals = get_option('dbd_totoplink');
 	
-	$totop_default_vals = array(
-		'totop_enabled'			=> 'disabled',
-		'totop_position' 		=> 'br',
-		'totop_position_c'		=> array('top' => '', 'right' => '', 'bottom' => '', 'left' => ''),
-		'totop_style' 			=> 'circle-dark',
-		'totop_style_c'			=> null,
-		'totop_style_w'			=> null,
-		'totop_style_h'			=> null,
-		'totop_scroll_offset'	=> '',
-		'totop_scroll_speed'	=> '',
-		'totop_link_text'		=> '',
-		'totop_link_style1'		=> '',
-		'totop_link_style2'		=> '',
-		'totop_rwd_max_width' 	=> ''
-	);
+	if (empty($totop_vals) || 'reset' == $type) {
+		global $dbd_totoplink_version;
 
-	if ($type == 'reset' || ($type == 'init' && empty($totop_vals))) {
-		$totop_vals = $totop_default_vals;
-	}
-	
-	// Migrate old (pre 1.6) values to new single options array.
-	if ($type == 'old') {
-		$totop_old_vals = array(
-			'totop_enabled'			=> get_option('totop_enabled'),
-			'totop_position' 		=> get_option('totop_position'),
-			'totop_position_c'		=> get_option('totop_position_c'),
-			'totop_style' 			=> get_option('totop_style'),
-			'totop_style_c'			=> get_option('totop_style_c'),
-			'totop_style_w'			=> get_option('totop_style_w'),
-			'totop_style_h'			=> get_option('totop_style_h'),
-			'totop_scroll_offset'	=> get_option('totop_scroll_offset'),
-			'totop_scroll_speed'	=> get_option('totop_scroll_speed'),
-			'totop_link_text'		=> get_option('totop_link_text'),
-			'totop_link_style1'		=> get_option('totop_link_style1'),
-			'totop_link_style2'		=> get_option('totop_link_style2'),
+		$totop_default_vals = array(
+			'totop_version'			=> $dbd_totoplink_version,
+			'totop_enabled'			=> 'disabled',
+			'totop_position' 		=> 'br',
+			'totop_position_c'		=> array('top' => '', 'right' => '', 'bottom' => '', 'left' => ''),
+			'totop_style' 			=> 'circle-dark',
+			'totop_style_c'			=> null,
+			'totop_style_w'			=> null,
+			'totop_style_h'			=> null,
+			'totop_scroll_offset'	=> '',
+			'totop_scroll_speed'	=> '',
+			'totop_link_text'		=> '',
+			'totop_link_style1'		=> '',
+			'totop_link_style2'		=> '',
 			'totop_rwd_max_width' 	=> ''
 		);
-		$totop_vals = $totop_old_vals;
-		// Remove old values
-		delete_option('totop_enabled');
-		delete_option('totop_position');
-		delete_option('totop_position_c');
-		delete_option('totop_style');
-		delete_option('totop_style_c');
-		delete_option('totop_style_w');
-		delete_option('totop_style_h');
-		delete_option('totop_scroll_offset');
-		delete_option('totop_scroll_speed');
-		delete_option('totop_link_text');
-		delete_option('totop_link_style1');
-		delete_option('totop_link_style2');
+	
+		$totop_vals = $totop_default_vals;
 	}
 
 	update_option( 'dbd_totoplink', $totop_vals );
@@ -175,10 +119,10 @@ function dbd_totop_settings() {
 			$totop_vals['totop_position_c'] = array_map('sanitize_text_field',$_POST['totop_position_c']);
 			$totop_vals['totop_style'] = sanitize_text_field($_POST['totop_style']);
 			$totop_vals['totop_style_c'] = esc_url_raw($_POST['totop_style_c']);
-			$totop_vals['totop_style_w'] = intval($_POST['totop_style_w']);
-			$totop_vals['totop_style_h'] = intval($_POST['totop_style_h']);			
-			$totop_vals['totop_scroll_offset'] = intval($_POST['totop_scroll_offset']);
-			$totop_vals['totop_scroll_speed'] = intval($_POST['totop_scroll_speed']);
+			$totop_vals['totop_style_w'] = sanitize_text_field($_POST['totop_style_w']);
+			$totop_vals['totop_style_h'] = sanitize_text_field($_POST['totop_style_h']);			
+			$totop_vals['totop_scroll_offset'] = sanitize_text_field($_POST['totop_scroll_offset']);
+			$totop_vals['totop_scroll_speed'] = sanitize_text_field($_POST['totop_scroll_speed']);
 			$totop_vals['totop_link_text'] = sanitize_text_field($_POST['totop_link_text']);
 			$totop_vals['totop_link_style1'] = sanitize_text_field($_POST['totop_link_style1']);
 			$totop_vals['totop_link_style2'] = sanitize_text_field($_POST['totop_link_style2']);
@@ -192,6 +136,7 @@ function dbd_totop_settings() {
 	?>
 	
 	<style>
+		.totoplink-title small {font-size:14px;color:#999;font-style: italic;float:right;}
 		.form-table {border:1px solid #ddd;}
 		.form-table td, .form-table th {padding:15px 10px;}
 		.form-table th {font-weight:bold;background:#eee;border-right:1px solid #ccc;border-bottom:1px solid #ddd;}
@@ -209,7 +154,7 @@ function dbd_totop_settings() {
     	
 	<div class="wrap" id="totop_options">
 	    <div class="icon32" id="icon-options-general"><br></div>
-		<h2>ToTop Link Settings</h2>
+		<h2 class="totoplink-title">ToTop Link Settings <small>ver. <?php echo $totop_vals['totop_version']; ?></small></h2>
         <form action="" method="post" id="dbd_totop_options_form" name="dbd_totop_options_form">
                 <?php wp_nonce_field('dbd_totop-submit', 'dbd_totop_nonce'); ?>
                 <table class="form-table">
@@ -406,9 +351,10 @@ function dbd_totop_body_hook() {
 
 		$totop_class = 'totop-'.$totop_vals['totop_position'].' totop-'.$totop_vals['totop_style'];
 
-		$totop_scroll_offset = $totop_vals['totop_scroll_offset'];
-		
-		echo '<a id="toTop" title="'.esc_attr($totop_link_text).'" class="'.esc_attr($totop_class).'" data-scroll-offset="'.esc_attr($totop_scroll_offset).'">'.$totop_img.'<span>'.$totop_link_text.'</span></a>';
+		$totop_scroll_offset = (!empty($totop_vals['totop_scroll_offset'])) ? $totop_vals['totop_scroll_offset'] : 0;
+		$totop_scroll_speed = (!empty($totop_vals['totop_scroll_speed'])) ? $totop_vals['totop_scroll_speed'] : 800;
+
+		echo '<a id="toTop" title="'.esc_attr($totop_link_text).'" class="'.esc_attr($totop_class).'" data-scroll-offset="'.esc_attr($totop_scroll_offset).'" data-scroll-speed="'.esc_attr($totop_scroll_speed).'">'.$totop_img.'<span>'.$totop_link_text.'</span></a>';
 	}
 }
 
@@ -431,33 +377,71 @@ function dbd_totop_init_hook() {
 
 		// Width and Height
 		if ($totop_vals['totop_style'] == 'dark' || $totop_vals['totop_style'] == 'light') {
-			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? $totop_vals['totop_style_w'] : '40';	
-			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? $totop_vals['totop_style_h'] : '48';	
+			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? intval($totop_vals['totop_style_w']) : '40';	
+			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? intval($totop_vals['totop_style_h']) : '48';	
 		} elseif ($totop_vals['totop_style'] == 'circle-dark' || $totop_vals['totop_style'] == 'circle-light') {
-			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? $totop_vals['totop_style_w'] : '50';	
-			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? $totop_vals['totop_style_h'] : '50';	
+			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? intval($totop_vals['totop_style_w']) : '50';	
+			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? intval($totop_vals['totop_style_h']) : '50';	
 		} else {
-			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? $totop_vals['totop_style_w'] : 'auto';	
-			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? $totop_vals['totop_style_h'] : 'auto';			
+			$totop_css_vars['width'] = (!empty($totop_vals['totop_style_w'])) ? intval($totop_vals['totop_style_w']) : 'auto';	
+			$totop_css_vars['height'] = (!empty($totop_vals['totop_style_h'])) ? intval($totop_vals['totop_style_h']) : 'auto';			
 		}
 
 		// Link Style
-		$totop_css_vars['text-style'][0] = $totop_vals['totop_link_style1'];
-		$totop_css_vars['text-style'][1] = $totop_vals['totop_link_style2'];
+		$totop_css_vars['text-style'][0] = esc_attr($totop_vals['totop_link_style1']);
+		$totop_css_vars['text-style'][1] = esc_attr($totop_vals['totop_link_style2']);
 
 		// Responsive
-		if (!empty($totop_vals['totop_rwd_max_width'])) {
-			$totop_css_vars['rwd_max_width'] = $totop_vals['totop_rwd_max_width'];
-		}
+		$totop_css_vars['rwd_max_width'] = esc_attr($totop_vals['totop_rwd_max_width']);
 
-		//global $totop_css_vars;
-		$totop_js_vars = ($totop_vals['totop_scroll_speed']) ? '?speed='.$totop_vals['totop_scroll_speed'] : '';
+		//$totop_js_vars = ($totop_vals['totop_scroll_speed']) ? '?speed='.esc_attr($totop_vals['totop_scroll_speed']) : '';
 		$totop_css = '?vars='.base64_encode(serialize($totop_css_vars));
 		wp_enqueue_style('totop',  plugin_dir_url(__FILE__).'totop-link.css.php'.$totop_css);
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('totop', plugin_dir_url(__FILE__).'totop-link.js.php'.$totop_js_vars,'jquery', '1.6', true);
+		wp_enqueue_script('totop', plugin_dir_url(__FILE__).'totop-link.js','jquery', '1.6', true);
 	}
 }
 
-
+add_action('admin_init', 'dbd_totop_version_check');
+function dbd_totop_version_check() {
+	global $dbd_totoplink_version;
+	$totop_vals = get_option('dbd_totoplink');
+	if (empty($totop_vals['totop_version']) || $totop_vals['totop_version'] < $dbd_totoplink_version) {
+		// Migrate old (pre 1.6) values to new single options array.
+		if (current_user_can('manage_options') && empty($totop_vals['totop_version'])) {
+			$totop_old_vals = array(
+				'totop_version'			=> $dbd_totoplink_version,
+				'totop_enabled'			=> get_option('totop_enabled'),
+				'totop_position' 		=> get_option('totop_position'),
+				'totop_position_c'		=> get_option('totop_position_c'),
+				'totop_style' 			=> get_option('totop_style'),
+				'totop_style_c'			=> get_option('totop_style_c'),
+				'totop_style_w'			=> get_option('totop_style_w'),
+				'totop_style_h'			=> get_option('totop_style_h'),
+				'totop_scroll_offset'	=> get_option('totop_scroll_offset'),
+				'totop_scroll_speed'	=> get_option('totop_scroll_speed'),
+				'totop_link_text'		=> get_option('totop_link_text'),
+				'totop_link_style1'		=> get_option('totop_link_style1'),
+				'totop_link_style2'		=> get_option('totop_link_style2'),
+				'totop_rwd_max_width' 	=> ''
+			);
+			$totop_vals = $totop_old_vals;
+			// Remove old values
+			delete_option('totop_enabled');
+			delete_option('totop_position');
+			delete_option('totop_position_c');
+			delete_option('totop_style');
+			delete_option('totop_style_c');
+			delete_option('totop_style_w');
+			delete_option('totop_style_h');
+			delete_option('totop_scroll_offset');
+			delete_option('totop_scroll_speed');
+			delete_option('totop_link_text');
+			delete_option('totop_link_style1');
+			delete_option('totop_link_style2');
+		
+			update_option( 'dbd_totoplink', $totop_vals );
+		}
+	}
+}
 ?>
