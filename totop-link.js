@@ -1,8 +1,3 @@
-<?php 
-	header('Content-type: text/javascript');
-	$speed = (!empty($_GET['speed'])) ? $_GET['speed'] : 800;
-?>
-
 jQuery(function() {
 	jQuery(window).scroll(function() {
 		var soffset = jQuery('#toTop').data('scroll-offset');
@@ -15,6 +10,8 @@ jQuery(function() {
 	});
  
 	jQuery('#toTop').click(function() {
-		jQuery('body,html').animate({scrollTop:0},<?php echo $speed; ?>);
+		var sspeed = jQuery(this).data('scroll-speed');
+		console.log(sspeed);
+		jQuery('body,html').animate({scrollTop:0},sspeed);
 	});	
 });
