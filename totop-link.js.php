@@ -1,10 +1,11 @@
-<?php header('Content-type: text/javascript');
-$speed = (!empty($_GET['speed'])) ? $_GET['speed'] : 800;
+<?php 
+	header('Content-type: text/javascript');
+	$speed = (!empty($_GET['speed'])) ? $_GET['speed'] : 800;
 ?>
 
 jQuery(function() {
 	jQuery(window).scroll(function() {
-		var soffset = jQuery('#toTop').attr('rel');
+		var soffset = jQuery('#toTop').data('scroll-offset');
 		soffset = (soffset) ? soffset : 0;
 		if(jQuery(this).scrollTop() > soffset) {
 			jQuery('#toTop').fadeIn();	
