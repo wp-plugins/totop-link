@@ -11,7 +11,6 @@ jQuery(function() {
  
 	jQuery('#toTop').click(function() {
 		var sspeed = jQuery(this).data('scroll-speed');
-		console.log(sspeed);
 		jQuery('body,html').animate({scrollTop:0},sspeed);
 	});	
 });

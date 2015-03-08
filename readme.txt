@@ -1,7 +1,7 @@
 ﻿=== ToTop Link ===
 Contributors: DaoByDesign
 Requires at least: 2.8
-Tested up to: 4.0
+Tested up to: 4.1.1
 Stable tag: 1.6
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 License: GPLv2 or later
