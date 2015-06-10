@@ -6,7 +6,7 @@ Plugin URI: http://www.daobydesign.com/free-plugins/totop-link-for-wordpress
 Description: A simple plugin for WordPress that adds an unobtrusive smooth scrolling "back to top" link to your site or blog.
 Author: Dao By Design
 Author URI: http://www.daobydesign.com
-Version: 1.6
+Version: 1.7
 License: GPL2
 */ 
 
@@ -29,7 +29,7 @@ License: GPL2
 */
 
 global $dbd_totoplink_version;
-$dbd_totoplink_version = 1.6;
+$dbd_totoplink_version = 1.7;
 
 /* ***********
 *

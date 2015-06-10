@@ -1,8 +1,8 @@
 ﻿=== ToTop Link ===
 Contributors: DaoByDesign
 Requires at least: 2.8
-Tested up to: 4.1.1
-Stable tag: 1.6
+Tested up to: 4.2
+Stable tag: 1.7
 Donate link: http://www.daobydesign.com/buy-us-a-coffee/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -41,6 +41,9 @@ This plugin is released under a GPL license.
 Easier just to view the [plugin's page](http://www.daobydesign.com/free-plugins/totop-link-for-wordpress/) for a live demo.
 
 == Changelog ==
+= 1.7 =
+Minor maintenance release
+
 = 1.6 =
 Major code overhaul, improved performance, added new default SVG icons, moved Javascript to footer for better page load speed.
 
